@@ -1,8 +1,8 @@
-print("RUN.PY STARTED")
+
 from app import create_app
 
 app = create_app()
 
 if __name__ == "__main__":
-    print("ABOUT TO RUN FLASK")
+    
     app.run(debug=True)
