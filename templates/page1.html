@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel panel-grit">
+
+  <div class="panel-head">
+    <div class="panel-title big">COMPARE PLAYERS</div>
+
+    <form method="POST" class="picker">
+      <div class="picker-label">TEAM:</div>
+      <select name="team" class="picker-select">
+        {% for t in teams %}
+          <option value="{{ t }}" {% if t == selected_team %}selected{% endif %}>{{ t }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn" type="submit">COMPARE</button>
+    </form>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-badge">LEGEND</div>
+      <img class="player-img" src="{{ url_for('static', filename='img/players/' + legacy.photo) }}" alt="{{ legacy.name }}">
+      <div class="card-name">{{ legacy.name }}</div>
+      <div class="card-tag">{{ legacy.tag }}</div>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <div class="card">
+      <div class="card-badge">MODERN</div>
+      <img class="player-img" src="{{ url_for('static', filename='img/players/' + modern.photo) }}" alt="{{ modern.name }}">
+      <div class="card-name">{{ modern.name }}</div>
+      <div class="card-tag">{{ modern.tag }}</div>
+    </div>
+  </div>
+
+  <div class="panel-title mid">STAT COMPARISON</div>
+
+  <div class="stats">
+    {% for r in rows %}
+      <div class="stat-row">
+        <div class="stat-name">{{ r.stat }}</div>
+
+        <div class="stat-bars">
+          <div class="bar-shell">
+            <div class="bar-fill legacy" data-width="{{ r.legacy_pct }}"></div>
+            <div class="bar-value">{{ r.legacy }}</div>
+          </div>
+
+          <div class="bar-shell">
+            <div class="bar-fill modern" data-width="{{ r.modern_pct }}"></div>
+            <div class="bar-value">{{ r.modern }}</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+  <div class="panel-title">START</div>
+  <div class="panel-sub">
+    Pick an NFC West team to compare a legend vs a modern star.
+  </div>
+
+  <div class="team-grid">
+    {% for t in teams %}
+      <a class="team-tile" href="{{ url_for('compare') }}?team={{ t }}">{{ t }}</a>
+    {% endfor %}
+  </div>
+
+  <div class="panel-note">
+    TIP: You can tweak the numbers later — the layout/animations will stay.
+  </div>
+</section>
+
+{% endblock %}
